@@ -1,0 +1,204 @@
+$progress-color: #AAD3EA;
+$bg-color: #1786C6;
+$shadow: #419CD0;
+$highlight: #DC8679;
+$text-color: #FEFFFE;
+
+* {
+   box-sizing: border-box;
+}
+body {
+   font-family: 'Roboto', Arial, sans-serif;
+   font-size: 16px;
+   font-weight: 300;
+   background-color: $bg-color;
+   color: $text-color;
+   overflow: hidden;
+}
+
+.wrapper {
+   width: 30em;
+   height: 30em;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   
+   .label {
+      position: absolute;
+      top: 5em;
+      left: 3em;
+      right: 3em;
+      bottom: 5em;
+      z-index: 100;
+      
+      .setup {
+         display: flex;
+         justify-content: space-between;
+         margin-top: 0.5em;
+         
+         .rest, .interval {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-bottom: 0.5em;
+            font-size: 2.5em;
+            
+            .title {
+               width: 100%;
+               font-size: 1rem;
+               text-align: center;
+               margin-bottom: 0.5em;
+            }
+            
+            a {
+               text-decoration: none;
+               color: $text-color;
+            }
+            div.input {
+               margin: 0 0.1em;
+               text-align: center;
+               width: 2em;
+               position: relative;
+               
+               &:after {
+                  content:'min';
+                  font-size: 0.3em;
+                  display: block;
+                  position: absolute;
+                  bottom: -1em;
+                  left: 50%;
+                  transform: translateX(-50%);
+               }
+            }
+            
+            .minus,.plus {
+               cursor: pointer;
+            }
+            .plus {
+               font-size: 0.6em;
+               line-height: 1.6em;
+            }
+         }
+      }
+      
+      .status {
+         font-size: 3em;
+         height: 1em;
+         text-align: center;
+         margin-top: 0.5em;
+      }
+      
+      .timer {
+         font-size: 3em;
+         height: 1em;
+         display: flex;
+         justify-content: center;
+         margin: 0.2em 0 0.5em;
+      }
+      
+      .controls {
+         text-align: center;
+         
+         button {
+            display: block;
+            margin: 0 auto;
+            background-color: $progress-color;
+            border: none;
+            font-size: 1.5em;
+            border-radius: 0.3em;
+            padding: 0.3em 0.8em;
+            cursor: pointer;
+            color: black;
+            transition: background-color 300ms;
+            
+            &:hover {
+               background-color: $highlight;
+            }
+            &:focus {
+               outline: none;
+            }            
+         }
+         button.reset {
+            margin: 1em auto;
+            font-size: 1em;
+         }
+         
+         
+      }
+   }
+   
+   .pie {
+      clip: rect(0, 30em, 30em, 15em);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+      .half {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         top: 0;
+         left: 0;
+         border-radius: 50%;
+         border: 1em solid $progress-color;
+         background: transparent;
+         clip: rect(0, 15em, 30em, 0);
+      }
+      .half.coral {
+         border-color: coral;
+      }
+      
+      .right-side {
+         display:none;
+      }
+      
+      .left-side {
+         transform: rotate(0deg); /* Change this to display the chart*/
+      }
+   }
+   
+   .pie.full {
+      clip: rect(auto, auto, auto, auto);
+      
+      .right-side {
+         display: block;
+         transform: rotate(180deg);
+      }
+      
+      // .left-side {
+      //    transform: rotate(180deg);
+      // }
+   }
+   
+   .shadow {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1em solid $shadow;
+      border-radius: 50%;
+      z-index: -1;
+   }
+}
+
+
+
+// .debug {display: none;}
+
+@media screen and (max-width: 768px ) {
+   body {
+      font-size: 14px;
+   }
+}
+
+@media screen and (max-width: 425px ) {
+   body {
+      font-size: 11px;
+   }
+}
+
