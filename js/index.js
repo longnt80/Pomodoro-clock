@@ -67,7 +67,7 @@ $('document').ready(function(){
                // elapse = 0;
                btnState = 0;
                sessionState = 0;
-               startBtn.text("Start");
+               startBtn.text("Redo");
                $('.display').text("00:00:00");
             }
 
