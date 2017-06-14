@@ -133,6 +133,7 @@ $('document').ready(function(){
          rest = parseInt(restInput.text());
          run();
          console.log("btnState",btnState);
+
       }
       // Pause Button
       else if ( btnState === 1 ) {
@@ -164,16 +165,20 @@ $('document').ready(function(){
    
    var sessionIncrease = function() {
       if ( btnState !== 1 ) {
-         if ( btnState === 2 && sessionState === 0 ) {
-            accu = 0;
-         }
-         else if ( sessionState === 1 ) {
+         if ( sessionState === 1 ) {
             return;
+         }
+         else if ( status.text() === "Done" ) {
+               startBtn.text("Start");
+         }
+         else if ( btnState === 2 && sessionState === 0 ) {
+            accu = 0;
          }
          var temp = sessionInput.text();
          temp++;
          sessionInput.text(temp);
       }
+      
       else {
          return;
       }
@@ -183,11 +188,14 @@ $('document').ready(function(){
          if ( sessionInput.text() < 2 ) {
             return;
          }
+         else if ( sessionState === 1 ) {
+               return;
+         }
+         else if ( status.text() === "Done" ) {
+               startBtn.text("Start");
+         }
          else if ( btnState === 2 && sessionState === 0 ) {
             accu = 0;
-         }
-         else if ( sessionState === 1 ) {
-            return;
          }
          var temp = sessionInput.text();
          temp--;
@@ -217,7 +225,10 @@ $('document').ready(function(){
    
    var restIncrease = function(){
       if ( btnState !== 1 ) {
-         if ( btnState === 2 && sessionState === 1 ) {
+         if ( status.text() === "Done" ) {
+               startBtn.text("Start");
+         }
+         else if ( btnState === 2 && sessionState === 1 ) {
             accu = 0;
          }
          var temp = restInput.text();
@@ -232,6 +243,9 @@ $('document').ready(function(){
       if ( btnState !== 1 ) {
          if ( restInput.text() < 2 ) {
             return;
+         }
+         else if ( status.text() === "Done" ) {
+               startBtn.text("Start");
          }
          else if ( btnState === 2 && sessionState === 1 ) {
                accu = 0;   
